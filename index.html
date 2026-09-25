@@ -1,0 +1,1014 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  /* Estados iniciais de animação só existem com .anim. Failsafe: se o GSAP não subir em 3,5 s, tudo aparece. */
+  (function () {
+    var h = document.documentElement;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    h.classList.add('anim');
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    try { if (!sessionStorage.getItem('odt-intro')) h.classList.add('intro-on'); } catch (e) {}
+    window.__fs = setTimeout(function () { h.classList.remove('anim', 'intro-on'); }, 3500);
+  })();
+</script>
+<title>Café Ouro da Terra | O café de Varginha, Sul de Minas</title>
+<meta name="description" content="Café 100% arábica de Varginha, Sul de Minas. Tradicional, Gourmet e cápsulas. Peça pelo WhatsApp ou leve o Ouro da Terra pra sua empresa.">
+<meta property="og:title" content="Café Ouro da Terra">
+<meta property="og:description" content="O legítimo café de Varginha, Sul de Minas. 100% arábica, da terra pra sua xícara.">
+<meta property="og:image" content="img/ww.png">
+<meta property="og:locale" content="pt_BR">
+<meta name="theme-color" content="#16181c">
+<link rel="canonical" href="https://www.cafeourodaterra.com.br/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Newsreader:opsz,wght@6..72,300..600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Café Ouro da Terra",
+  "url": "https://www.cafeourodaterra.com.br/",
+  "telephone": "+55-35-3214-2064",
+  "email": "contato@cafeourodaterra.com.br",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Av. Francisco Gonçalves Valim, 460, Rezende",
+    "addressLocality": "Varginha",
+    "addressRegion": "MG",
+    "postalCode": "37062-185",
+    "addressCountry": "BR"
+  },
+  "openingHours": "Mo-Fr 08:00-17:00",
+  "sameAs": ["https://www.instagram.com/cafeourodaterra/"]
+}
+</script>
+<style>
+:root {
+  /* Cores tiradas do pacote e do fundo exato das fotos de produto */
+  --preto: oklch(0.17 0.008 250);
+  --preto-2: oklch(0.21 0.01 250);
+  --preto-3: oklch(0.27 0.012 250);
+  --azul: #3094ce;
+  --azul-escuro: oklch(from var(--azul) calc(l - 0.2) c h);
+  --amarelo: #ffc400;
+  --amarelo-hover: oklch(from var(--amarelo) calc(l + 0.05) c h);
+  --papel: oklch(0.965 0.014 85);
+
+  --tx: oklch(0.2 0.01 250);
+  --tx-2: oklch(0.42 0.012 250);
+  --tx-3: oklch(0.56 0.012 250);
+  --tx-inv: oklch(0.97 0.005 90);
+  --tx-inv-2: oklch(0.8 0.008 90);
+  --tx-inv-3: oklch(0.62 0.008 90);
+  --linha: color-mix(in oklch, var(--tx) 14%, transparent);
+  --linha-inv: color-mix(in oklch, var(--tx-inv) 14%, transparent);
+
+  --display: "Archivo", system-ui, sans-serif;
+  --serif: "Newsreader", Georgia, serif;
+
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --section-y: clamp(5.5rem, 11vw, 10rem);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-swift: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+i, em, cite, address, dfn, var { font-style: normal; }
+html { -webkit-text-size-adjust: 100%; }
+html:not(.anim) { scroll-behavior: smooth; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+body {
+  margin: 0;
+  font-family: var(--display);
+  font-variation-settings: "wdth" 100;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--tx);
+  background: var(--papel);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+/* Grão fixo sobre a página inteira: tira o liso digital */
+body::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 90;
+  opacity: .06; transform: translateZ(0);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+h1, h2, h3, p { margin: 0; }
+h1, h2, h3 { text-wrap: balance; font-weight: inherit; }
+p { text-wrap: pretty; }
+::selection { background: var(--amarelo); color: var(--preto); }
+:focus-visible { outline: 2px solid var(--amarelo); outline-offset: 3px; border-radius: 2px; }
+
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 1rem; top: 1rem; z-index: 300; background: var(--amarelo); color: var(--preto); padding: .5rem 1rem; }
+.wrap { width: min(78rem, 100% - var(--gutter) * 2); margin-inline: auto; }
+
+/* ---------- Tipografia ---------- */
+.eyebrow {
+  font-size: .72rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  display: flex; align-items: center; gap: .75rem;
+}
+.eyebrow b { font-weight: 600; font-variant-numeric: tabular-nums; opacity: .55; letter-spacing: .08em; }
+.eyebrow b::after { content: ""; display: inline-block; vertical-align: middle; width: 2.5rem; height: 1px; margin-left: .75rem; background: currentColor; }
+
+.cond {
+  display: block;
+  font-family: var(--display);
+  font-variation-settings: "wdth" 62;
+  font-weight: 850;
+  text-transform: uppercase;
+  line-height: .86;
+  letter-spacing: -.012em;
+}
+.serifa {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 350;
+  text-transform: none;
+  font-size: .8em;
+  line-height: 1;
+  letter-spacing: -.04em;
+  padding-left: .85em;
+}
+.ouro { color: var(--amarelo); }
+
+/* ---------- Botões: texto que rola + magnético ---------- */
+.btn {
+  position: relative;
+  display: inline-flex; align-items: center; gap: .65rem;
+  min-height: 3.35rem; padding: .95rem 1.7rem;
+  border-radius: 999px;
+  font-weight: 700; font-size: .95rem; letter-spacing: -.005em;
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  transition: background-color .25s var(--ease-swift), color .25s var(--ease-swift), border-color .25s var(--ease-swift), box-shadow .35s var(--ease), scale .15s var(--ease-swift);
+}
+.btn:active { scale: .97; }
+.btn svg { width: 1.15em; height: 1.15em; flex: none; transition: transform .5s var(--ease-expo); }
+.btn:hover svg { transform: rotate(-12deg) scale(1.1); }
+.btn--ouro { background: var(--amarelo); color: var(--preto); }
+.btn--ouro:hover { background: var(--amarelo-hover); box-shadow: 0 0 0 6px color-mix(in oklch, var(--amarelo) 22%, transparent), 0 12px 32px color-mix(in oklch, var(--amarelo) 30%, transparent); }
+.btn--fantasma { border-color: color-mix(in oklch, currentColor 40%, transparent); }
+.btn--fantasma:hover { border-color: currentColor; background: color-mix(in oklch, currentColor 8%, transparent); }
+.btn--preto { background: var(--preto); color: var(--tx-inv); }
+.btn--preto:hover { background: var(--azul); }
+
+.rola { display: inline-block; overflow: hidden; height: 1.3em; line-height: 1.3; vertical-align: top; }
+.rola > span { display: block; position: relative; transition: transform .6s var(--ease-expo); }
+.rola > span::after { content: attr(data-t); position: absolute; left: 0; top: 100%; white-space: nowrap; }
+a:hover > .rola > span, a:focus-visible > .rola > span { transform: translateY(-100%); }
+
+/* ---------- Intro: a selagem do pacote abrindo ---------- */
+.intro { display: none; }
+.intro-on .intro {
+  display: grid; place-items: center;
+  position: fixed; inset: 0; z-index: 200;
+  background: var(--preto); color: var(--tx-inv);
+}
+.intro::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -11px; height: 12px;
+  background: conic-gradient(from 135deg at top, var(--preto) 90deg, transparent 0) 0 0 / 16px 12px repeat-x;
+}
+.intro__logo { width: min(18rem, 60vw); filter: invert(1); }
+.intro__barra { width: min(18rem, 60vw); height: 2px; margin-top: 1.5rem; background: var(--linha-inv); overflow: hidden; }
+.intro__barra i { display: block; height: 100%; background: var(--amarelo); transform-origin: left; transform: scaleX(0); }
+
+/* ---------- Header ---------- */
+.topo {
+  position: fixed; inset: 0 0 auto; z-index: 50;
+  color: var(--tx-inv);
+  transition: transform .7s var(--ease-expo), background-color .4s var(--ease-swift);
+}
+.topo.solido { background: color-mix(in oklch, var(--preto) 94%, transparent); }
+.topo.esconde { transform: translateY(-100%); }
+.topo .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.1rem; transition: padding .5s var(--ease); }
+.topo.solido .wrap { padding-block: .7rem; }
+.topo__logo { display: block; }
+.topo__logo img { width: 10.5rem; filter: invert(1); transition: opacity .3s var(--ease-swift); }
+.topo__logo:hover img { opacity: .75; }
+.topo nav { display: flex; align-items: center; gap: 2.25rem; }
+.topo nav > a:not(.btn) { text-decoration: none; font-size: .88rem; font-weight: 500; color: var(--tx-inv-2); position: relative; transition: color .3s var(--ease-swift); }
+.topo nav > a:not(.btn)::before {
+  content: ""; position: absolute; left: 50%; top: -.55rem; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%;
+  background: var(--amarelo); transform: scale(0); transition: transform .4s var(--ease-spring);
+}
+.topo nav > a:not(.btn):hover, .topo nav > a.ativo { color: var(--tx-inv); }
+.topo nav > a:not(.btn):hover::before, .topo nav > a.ativo::before { transform: scale(1); }
+.topo .btn { min-height: 2.75rem; padding: .6rem 1.25rem; font-size: .88rem; }
+.topo__prog { position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: var(--amarelo); transform-origin: left; transform: scaleX(0); opacity: 0; transition: opacity .3s; }
+.topo.solido .topo__prog { opacity: 1; }
+@supports (animation-timeline: scroll()) {
+  .topo__prog { animation: progresso linear both; animation-timeline: scroll(root block); }
+}
+@keyframes progresso { to { transform: scaleX(1); } }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(ellipse 45% 55% at 78% 52%, color-mix(in oklch, var(--azul) 26%, transparent), transparent 70%),
+    radial-gradient(ellipse 35% 30% at 10% 100%, color-mix(in oklch, var(--amarelo) 7%, transparent), transparent 70%),
+    var(--preto);
+  color: var(--tx-inv);
+  padding: clamp(8.5rem, 15vw, 12rem) 0 clamp(6rem, 10vw, 9rem);
+  min-height: 100svh;
+  display: flex; align-items: center;
+}
+.hero .wrap { display: grid; grid-template-columns: 1.3fr 1fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; position: relative; z-index: 1; }
+.hero .eyebrow { color: var(--amarelo); margin-bottom: 2rem; }
+.hero .eyebrow::before { content: ""; width: 2.5rem; height: 1px; background: currentColor; }
+.hero h1 { font-size: clamp(4.2rem, 11.8vw, 10.5rem); }
+.hero h1 .serifa { color: var(--tx-inv-2); margin-block: .02em .06em; }
+.hero__sub { margin-top: 2.25rem; max-width: 33rem; font-size: clamp(1.05rem, 1.35vw, 1.2rem); color: var(--tx-inv-2); }
+.hero__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2.25rem; }
+.hero__prova { display: flex; margin-top: 3.5rem; border-top: 1px solid var(--linha-inv); padding-top: 1.5rem; max-width: 36rem; }
+.hero__prova div { flex: 1 1 0; padding-right: 1.25rem; }
+.hero__prova div + div { padding-left: 1.25rem; border-left: 1px solid var(--linha-inv); }
+.hero__prova strong { display: block; font-variation-settings: "wdth" 70; font-size: 1.5rem; font-weight: 850; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.hero__prova div > span { font-size: .8rem; color: var(--tx-inv-3); line-height: 1.35; display: block; margin-top: .25rem; }
+
+.hero__foto { position: relative; }
+.hero__moldura { border-radius: 6px; overflow: hidden; transform: rotate(2.5deg); box-shadow: 0 8px 16px oklch(0 0 0 / .3), 0 40px 80px oklch(0 0 0 / .45); }
+.hero__moldura img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; }
+.hero__etiqueta {
+  position: absolute; right: -1rem; bottom: -1.6rem;
+  background: var(--amarelo); color: var(--preto);
+  padding: .8rem 1.1rem; border-radius: 4px; transform: rotate(-3deg);
+  font-variation-settings: "wdth" 70; font-weight: 850; text-transform: uppercase; line-height: 1.05; font-size: 1.05rem;
+  box-shadow: 0 10px 30px oklch(0 0 0 / .35);
+}
+.hero__etiqueta small { display: block; font-variation-settings: "wdth" 100; font-weight: 600; font-size: .66rem; letter-spacing: .14em; }
+.selo { position: absolute; left: -3.25rem; top: -3.25rem; width: clamp(6.5rem, 10vw, 8.75rem); height: auto; filter: drop-shadow(0 12px 24px oklch(0 0 0 / .4)); }
+.selo text { font-family: var(--display); font-variation-settings: "wdth" 78; font-weight: 800; fill: #16181c; }
+.hero__coord {
+  position: absolute; right: calc(var(--gutter) * .4); top: 50%;
+  writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg);
+  font-size: .66rem; letter-spacing: .24em; text-transform: uppercase; color: var(--tx-inv-3);
+}
+.hero__role {
+  position: absolute; left: var(--gutter); bottom: 2rem;
+  display: flex; align-items: center; gap: .75rem;
+  font-size: .66rem; letter-spacing: .24em; text-transform: uppercase; color: var(--tx-inv-3);
+}
+.hero__role i { width: 1px; height: 2.5rem; background: var(--linha-inv); position: relative; overflow: hidden; }
+.hero__role i::after { content: ""; position: absolute; inset: 0; background: var(--amarelo); animation: gota 2.2s var(--ease) infinite; }
+@keyframes gota { 0% { transform: translateY(-100%); } 60%, 100% { transform: translateY(100%); } }
+
+/* ---------- Serrilhado da selagem ---------- */
+.serra { position: relative; }
+.serra::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -11px; height: 12px; z-index: 1;
+  background: conic-gradient(from -45deg at bottom, var(--serra-cor) 90deg, transparent 0) 0 0 / 16px 12px repeat-x;
+}
+
+/* ---------- Cafés ---------- */
+.cafes { --serra-cor: var(--azul); background: var(--azul); color: var(--tx-inv); padding-block: var(--section-y); }
+.cafes__cab { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2rem; align-items: end; margin-bottom: clamp(3.5rem, 7vw, 6rem); }
+.cafes__cab .eyebrow { color: var(--preto); margin-bottom: 1.5rem; }
+.cafes__cab h2 { font-size: clamp(3.2rem, 7vw, 6.4rem); }
+.cafes__cab h2 .serifa { color: var(--preto); }
+.cafes__cab > p { max-width: 24rem; justify-self: end; color: oklch(0.98 0.01 240); font-size: 1.05rem; }
+
+.produtos { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.25rem; }
+.produto {
+  position: relative; border-radius: 12px; overflow: hidden; display: grid; min-width: 0;
+  border: 1.5px solid color-mix(in oklch, white 38%, transparent);
+  transition: border-color .4s var(--ease-swift);
+}
+.produto:hover { border-color: white; }
+.produto__n { position: absolute; top: 1.1rem; right: 1.25rem; font-size: .72rem; font-weight: 600; letter-spacing: .12em; font-variant-numeric: tabular-nums; opacity: .7; z-index: 2; }
+.produto__txt { padding: clamp(1.5rem, 3vw, 2.5rem); display: flex; flex-direction: column; gap: 1rem; position: relative; z-index: 1; }
+.produto__tipo { font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; opacity: .8; }
+.produto h3 { font-size: clamp(2.6rem, 5vw, 4.25rem); }
+.produto p { max-width: 30rem; }
+.tags { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; padding: 0; margin: 0; }
+.tags li { font-size: .74rem; font-weight: 600; padding: .3rem .75rem; border-radius: 999px; border: 1px solid color-mix(in oklch, currentColor 55%, transparent); }
+.produto__link { margin-top: auto; padding-top: .75rem; font-weight: 700; text-decoration: none; display: inline-flex; gap: .6rem; align-items: center; }
+.produto__link::after { content: ""; position: absolute; inset: 0; z-index: 3; } /* card inteiro clicável */
+.produto__seta { display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; border: 1px solid currentColor; overflow: hidden; position: relative; }
+.produto__seta svg { width: .9rem; height: .9rem; transition: transform .55s var(--ease-expo); }
+.produto__seta svg + svg { position: absolute; transform: translateX(-180%); }
+.produto:hover .produto__seta svg:first-child { transform: translateX(180%); }
+.produto:hover .produto__seta svg + svg { transform: translateX(0); }
+.produto img { transition: transform 1s var(--ease-expo); }
+
+.produto--trad { grid-column: span 7; grid-template-columns: 1fr 1fr; align-items: center; background: var(--azul); }
+.produto--trad img { width: 100%; max-width: 21rem; margin: 1.5rem auto; }
+.produto--trad:hover img { transform: translateY(-14px) rotate(-4deg) scale(1.05); }
+.produto--gour { grid-column: span 5; background: var(--preto); color: var(--tx-inv); grid-template-rows: auto 1fr; border-color: transparent; }
+.produto--gour:hover { border-color: var(--amarelo); }
+.produto--gour figure { margin: 0; overflow: hidden; background: var(--amarelo); display: grid; place-items: center; }
+.produto--gour img { width: 100%; max-width: 19rem; margin-bottom: -1.5rem; }
+.produto--gour:hover img { transform: scale(1.07) rotate(1deg); }
+.produto--gour .produto__tipo, .produto--gour .produto__link { color: var(--amarelo); }
+.produto--gour .produto__n { color: var(--preto); opacity: .8; }
+.produto--caps { grid-column: span 12; grid-template-columns: .65fr 1.25fr 1fr; align-items: center; background: var(--azul); }
+.produto--caps img { width: 100%; max-width: 15rem; margin: 1rem auto; }
+.produto--caps:hover img { transform: translateY(-10px) rotate(5deg) scale(1.04); }
+.produto--caps .produto__txt:last-of-type { border-left: 1px solid color-mix(in oklch, white 30%, transparent); align-self: stretch; justify-content: center; }
+
+/* ---------- Faixa amarela em movimento ---------- */
+.faixa {
+  --serra-cor: var(--amarelo);
+  background:
+    repeating-linear-gradient(90deg, oklch(0 0 0 / .1) 0 1px, transparent 1px 6px) top / 100% 9px no-repeat,
+    repeating-linear-gradient(90deg, oklch(0 0 0 / .1) 0 1px, transparent 1px 6px) bottom / 100% 9px no-repeat,
+    var(--amarelo);
+  color: var(--preto);
+  padding: 2.1rem 0;
+}
+.faixa__janela { overflow: hidden; }
+.faixa__trilho { display: flex; width: max-content; }
+.faixa ul {
+  list-style: none; margin: 0; padding: 0; display: flex; align-items: center; flex: none;
+  font-variation-settings: "wdth" 62; font-weight: 850; text-transform: uppercase;
+  font-size: clamp(1.6rem, 3.6vw, 3rem); line-height: 1; letter-spacing: -.005em;
+}
+.faixa li { display: flex; align-items: center; white-space: nowrap; }
+.faixa li::after {
+  content: ""; width: .7em; height: .7em; margin-inline: .6em; background: var(--preto);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(35 12 12)'%3E%3Cpath d='M12 2C8.4 2 5.5 6.5 5.5 12S8.4 22 12 22s6.5-4.5 6.5-10S15.6 2 12 2Zm.9 18.4c1.3-1.4 1.6-3 .5-5.1-1.1-2.2-1.5-4-.1-6.3.8-1.3 1-2.6.6-4.1 2.4.9 4.1 4.6 4.1 9.1 0 3.3-2.1 6-5.1 6.4Z'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(35 12 12)'%3E%3Cpath d='M12 2C8.4 2 5.5 6.5 5.5 12S8.4 22 12 22s6.5-4.5 6.5-10S15.6 2 12 2Zm.9 18.4c1.3-1.4 1.6-3 .5-5.1-1.1-2.2-1.5-4-.1-6.3.8-1.3 1-2.6.6-4.1 2.4.9 4.1 4.6 4.1 9.1 0 3.3-2.1 6-5.1 6.4Z'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+}
+.faixa li.contorno { color: transparent; -webkit-text-stroke: 1.5px var(--preto); }
+
+/* ---------- Origem ---------- */
+.origem { padding-block: var(--section-y); }
+.origem__grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(2rem, 7vw, 7rem); align-items: start; }
+.origem .eyebrow { color: var(--tx-2); margin-bottom: 1.75rem; }
+.origem h2 { font-family: var(--serif); font-weight: 380; font-size: clamp(2rem, 3.7vw, 3.3rem); line-height: 1.1; letter-spacing: -.025em; }
+.origem h2 strong {
+  --hl: 1;
+  font-weight: 560;
+  background: linear-gradient(color-mix(in oklch, var(--amarelo) 75%, transparent), color-mix(in oklch, var(--amarelo) 75%, transparent)) 0 88% / calc(var(--hl) * 100%) 36% no-repeat;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.origem__txt > p { margin-top: 2rem; color: var(--tx-2); max-width: 32rem; }
+.origem__fotos { display: grid; grid-template-columns: 1fr .82fr; gap: 1rem; position: relative; }
+.origem__fotos figure { margin: 0; overflow: hidden; border-radius: 6px; }
+.origem__fotos img { width: 100%; height: 100%; object-fit: cover; }
+.origem__fotos figure:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+.origem__fotos figure:nth-child(2) { aspect-ratio: 1; }
+.origem__fotos figure:nth-child(2) img { object-position: 45% 50%; }
+.origem__legenda { align-self: end; padding: 1.4rem; border-radius: 6px; background: var(--preto); color: var(--tx-inv); }
+.origem__legenda strong { display: block; font-variation-settings: "wdth" 62; font-weight: 850; text-transform: uppercase; font-size: 2rem; line-height: .9; }
+.origem__legenda strong span { color: var(--amarelo); }
+.origem__legenda p { font-size: .85rem; color: var(--tx-inv-2); margin-top: .75rem; }
+.zoom { overflow: hidden; }
+.zoom > img { transition: transform 1.2s var(--ease-expo); }
+
+.passos { list-style: none; padding: 0; margin: clamp(4rem, 8vw, 7rem) 0 0; display: grid; grid-template-columns: repeat(3, 1fr); position: relative; }
+.passos__linha { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--tx); transform-origin: left; }
+.passos li { padding: 1.75rem 1.5rem 0 0; }
+.passos li + li { padding-left: 1.5rem; border-left: 1px solid var(--linha); }
+.passos b { display: block; font-variation-settings: "wdth" 62; font-weight: 850; font-size: 3rem; line-height: 1; color: var(--azul); margin-bottom: 1rem; font-variant-numeric: tabular-nums; }
+.passos h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: .4rem; letter-spacing: -.01em; }
+.passos p { color: var(--tx-2); font-size: .95rem; }
+
+/* ---------- Conta do café ---------- */
+.conta { --serra-cor: var(--preto); background: var(--preto); color: var(--tx-inv); padding-block: var(--section-y); }
+.conta__grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+.conta .eyebrow { color: var(--amarelo); margin-bottom: 1.75rem; }
+.conta h2 { font-size: clamp(3.2rem, 7.5vw, 6.5rem); }
+.conta h2 .azul { color: var(--azul); }
+.conta__intro { margin-top: 2rem; color: var(--tx-inv-2); max-width: 30rem; }
+.calc {
+  background: var(--preto-2);
+  border: 1px solid color-mix(in oklch, var(--tx-inv) 10%, transparent);
+  border-radius: 14px; padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  box-shadow: inset 0 1px 0 color-mix(in oklch, white 7%, transparent), 0 40px 80px oklch(0 0 0 / .3);
+}
+.calc label { display: flex; justify-content: space-between; align-items: baseline; font-weight: 600; color: var(--tx-inv-2); }
+.calc label output { font-variant-numeric: tabular-nums; font-variation-settings: "wdth" 70; font-weight: 850; font-size: 2.1rem; color: var(--tx-inv); line-height: 1; }
+.calc input[type=range] {
+  --p: 5%;
+  -webkit-appearance: none; appearance: none; width: 100%; height: 2.5rem; margin: 1rem 0 .25rem; background: transparent; cursor: pointer;
+}
+.calc input[type=range]::-webkit-slider-runnable-track { height: 4px; border-radius: 4px; background: linear-gradient(90deg, var(--amarelo) var(--p), var(--preto-3) var(--p)); }
+.calc input[type=range]::-moz-range-track { height: 4px; border-radius: 4px; background: linear-gradient(90deg, var(--amarelo) var(--p), var(--preto-3) var(--p)); }
+.calc input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 1.5rem; height: 1.5rem; margin-top: -.6rem; border-radius: 50%; background: var(--amarelo); border: 4px solid var(--preto-2); box-shadow: 0 0 0 1px var(--amarelo); transition: transform .3s var(--ease-spring); }
+.calc input[type=range]::-moz-range-thumb { width: 1.1rem; height: 1.1rem; border-radius: 50%; background: var(--amarelo); border: 4px solid var(--preto-2); box-shadow: 0 0 0 1px var(--amarelo); }
+.calc input[type=range]:hover::-webkit-slider-thumb, .calc input[type=range]:active::-webkit-slider-thumb { transform: scale(1.25); }
+.calc__escala { display: flex; justify-content: space-between; font-size: .72rem; color: var(--tx-inv-3); font-variant-numeric: tabular-nums; }
+.calc__res { margin-top: 1.75rem; padding-top: 1.75rem; border-top: 1px dashed color-mix(in oklch, var(--tx-inv) 18%, transparent); display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: center; }
+.calc__num { font-variant-numeric: tabular-nums; font-variation-settings: "wdth" 62; font-weight: 900; font-size: clamp(5rem, 10vw, 7rem); line-height: .78; color: var(--amarelo); min-width: 1.1ch; }
+.calc__un { font-size: .95rem; line-height: 1.35; color: var(--tx-inv-3); }
+.calc__un strong { color: var(--tx-inv); display: block; font-size: 1.15rem; }
+.pacotes { display: grid; grid-template-columns: repeat(20, 1fr); gap: 4px; margin-top: 1.5rem; }
+.pacotes svg { width: 100%; height: auto; opacity: .13; transform: translateY(3px) scale(.85); transition: opacity .35s var(--ease-swift), transform .5s var(--ease-spring); }
+.pacotes svg.on { opacity: 1; transform: none; }
+.calc .btn { margin-top: 1.75rem; width: 100%; justify-content: center; }
+.calc__nota { margin-top: 1rem; font-size: .76rem; color: var(--tx-inv-3); text-align: center; }
+
+/* ---------- Empresas ---------- */
+.empresas { padding-block: var(--section-y); }
+.empresas__grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: clamp(2.5rem, 7vw, 7rem); align-items: center; }
+.empresas__foto { position: relative; isolation: isolate; }
+.empresas__foto figure { margin: 0; border-radius: 6px; overflow: hidden; }
+.empresas__foto img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; }
+.empresas__bloco { position: absolute; inset: 1.5rem -1.5rem -1.5rem 1.5rem; background: var(--azul); border-radius: 6px; z-index: -1; }
+.empresas .eyebrow { color: var(--tx-2); margin-bottom: 1.75rem; }
+.empresas h2 { font-size: clamp(2.9rem, 6vw, 5.25rem); }
+.empresas h2 .serifa { color: var(--azul-escuro); }
+.empresas__txt > p { margin-top: 1.75rem; color: var(--tx-2); max-width: 32rem; }
+.segmentos { list-style: none; padding: 0; margin: 2rem 0 2.25rem; border-top: 1px solid var(--linha); }
+.segmentos a {
+  position: relative; display: grid; grid-template-columns: 1fr auto 1.5rem; gap: 1rem; align-items: center;
+  padding: 1.1rem .5rem; border-bottom: 1px solid var(--linha);
+  text-decoration: none; font-weight: 650; font-size: 1.05rem;
+  transition: padding .5s var(--ease-expo);
+  z-index: 0; overflow: hidden;
+}
+.segmentos a::before { content: ""; position: absolute; inset: 0; background: var(--amarelo); z-index: -1; transform: scaleY(0); transform-origin: bottom; transition: transform .5s var(--ease-expo); }
+.segmentos a:hover, .segmentos a:focus-visible { padding-inline: 1.25rem .75rem; }
+.segmentos a:hover::before, .segmentos a:focus-visible::before { transform: scaleY(1); }
+.segmentos span { font-weight: 400; color: var(--tx-3); font-size: .88rem; transition: color .3s; }
+.segmentos a:hover span { color: var(--tx); }
+.segmentos svg { width: 1rem; height: 1rem; transform: rotate(-45deg); transition: transform .5s var(--ease-expo); }
+.segmentos a:hover svg { transform: rotate(0); }
+
+/* ---------- Rodapé ---------- */
+.rodape { --serra-cor: var(--preto); background: var(--preto); color: var(--tx-inv); padding: var(--section-y) 0 0; }
+.rodape__cta { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2rem; padding-bottom: clamp(3rem, 6vw, 5rem); border-bottom: 1px solid var(--linha-inv); }
+.rodape__cta h2 { font-size: clamp(3.4rem, 9vw, 8.5rem); }
+.rodape__cta h2 .serifa { color: var(--amarelo); }
+.rodape__cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2rem; padding-block: 3rem; }
+.rodape__cols img { width: 11rem; filter: invert(1); margin-bottom: 1rem; }
+.rodape__cols p, .rodape__cols address { color: var(--tx-inv-2); font-size: .92rem; line-height: 1.8; }
+.rodape__cols h3 { font-size: .7rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--tx-inv-3); margin-bottom: 1rem; }
+.rodape__cols a { text-decoration: none; background: linear-gradient(var(--amarelo), var(--amarelo)) 0 100% / 0 1px no-repeat; transition: background-size .5s var(--ease-expo), color .3s var(--ease-swift); }
+.rodape__cols a:hover { color: var(--amarelo); background-size: 100% 1px; }
+.gigante { position: relative; overflow: hidden; text-align: center; font-variation-settings: "wdth" 62; font-weight: 900; text-transform: uppercase; font-size: 15.4vw; line-height: .78; letter-spacing: -.01em; white-space: nowrap; padding-top: 1rem; user-select: none; }
+.gigante span { display: block; }
+.gigante__contorno { color: transparent; -webkit-text-stroke: 1px color-mix(in oklch, var(--tx-inv) 24%, transparent); }
+.gigante__cheio { position: absolute; inset: 1rem 0 0; color: var(--amarelo); }
+.rodape__base { font-size: .78rem; color: var(--tx-inv-3); padding-block: 1.5rem; border-top: 1px solid var(--linha-inv); }
+.rodape__base .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+
+/* ---------- Cursor contextual ---------- */
+.cursor {
+  position: fixed; left: 0; top: 0; z-index: 80; pointer-events: none;
+  width: 5.5rem; height: 5.5rem; margin: -2.75rem 0 0 -2.75rem; border-radius: 50%;
+  background: var(--amarelo); color: #16181c;
+  display: grid; place-items: center;
+  font-weight: 750; font-size: .85rem; letter-spacing: -.01em;
+  opacity: 0; transform: scale(0);
+}
+
+/* ---------- Estados iniciais (só com .anim; o failsafe remove) ---------- */
+.anim [data-split] { visibility: hidden; }
+.anim [data-reveal], .anim [data-hero], .anim [data-card] { opacity: 0; }
+.anim .hero__moldura, .anim [data-clip] { clip-path: inset(100% 0 0 0); }
+.anim .selo, .anim .hero__etiqueta, .anim .hero__coord, .anim .hero__role { opacity: 0; }
+.split-linha { padding-block: .16em .07em; margin-block: -.16em -.07em; }
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 1024px) {
+  .produto--trad, .produto--gour { grid-column: span 12; }
+  .produto--caps { grid-template-columns: 1fr 1fr; }
+  .produto--caps .produto__txt:last-of-type { grid-column: 1 / -1; border-left: 0; border-top: 1px solid color-mix(in oklch, white 30%, transparent); }
+  .rodape__cols { grid-template-columns: 1fr 1fr; }
+  .hero__coord { display: none; }
+}
+@media (max-width: 860px) {
+  .topo nav > a:not(.btn) { display: none; }
+  .hero { min-height: 0; }
+  .hero .wrap, .origem__grid, .conta__grid, .empresas__grid, .cafes__cab, .rodape__cta { grid-template-columns: 1fr; }
+  .cafes__cab > p { justify-self: start; }
+  .hero__foto { max-width: 28rem; margin: 2.5rem 0 0 2.5rem; }
+  .hero__role { display: none; }
+  .passos { grid-template-columns: 1fr; }
+  .passos li + li { padding-left: 0; border-left: 0; border-top: 1px solid var(--linha); }
+  .passos li { padding-bottom: 1.75rem; }
+  .empresas__foto { margin-right: 1.5rem; }
+}
+@media (max-width: 560px) {
+  .topo__logo img { width: 8.5rem; }
+  .topo .btn .rola { display: none; }
+  .topo .btn { padding: .6rem .9rem; }
+  .serifa { padding-left: .45em; }
+  .hero__foto { margin-left: 2rem; margin-right: .5rem; }
+  .selo { left: -2.25rem; top: -2.25rem; }
+  .produto--trad, .produto--caps { grid-template-columns: 1fr; }
+  .produto--trad img, .produto--caps img { max-width: 15rem; }
+  .hero__prova div + div { padding-left: .8rem; }
+  .hero__prova div { padding-right: .8rem; }
+  .hero__prova strong { font-size: 1.15rem; }
+  .pacotes { grid-template-columns: repeat(15, 1fr); }
+  .rodape__cols { grid-template-columns: 1fr; }
+  .segmentos a { grid-template-columns: 1fr 1.5rem; }
+  .segmentos a span { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__role i::after { animation: none; }
+  *, *::before, *::after { transition-duration: .01ms !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="pac" viewBox="0 0 20 28">
+    <path d="M2.5 1h15l1 1.5v23L17.5 27h-15l-1-1.5v-23z" fill="#343944"/>
+    <rect x="1.5" y="12" width="17" height="8" fill="#3094ce"/>
+    <path d="M1.5 20h17v5.5L17.5 27h-15l-1-1.5z" fill="#ffc400"/>
+    <rect x="5" y="4.5" width="10" height="3.5" rx="1" fill="#f4f1ea"/>
+  </symbol>
+  <symbol id="seta" viewBox="0 0 16 16"><path d="M1 8h13M9 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+  <symbol id="grao" viewBox="0 0 24 24"><g transform="rotate(35 12 12)"><path d="M12 2C8.4 2 5.5 6.5 5.5 12S8.4 22 12 22s6.5-4.5 6.5-10S15.6 2 12 2Zm.9 18.4c1.3-1.4 1.6-3 .5-5.1-1.1-2.2-1.5-4-.1-6.3.8-1.3 1-2.6.6-4.1 2.4.9 4.1 4.6 4.1 9.1 0 3.3-2.1 6-5.1 6.4Z" fill="currentColor"/></g></symbol>
+</svg>
+
+<div class="intro" aria-hidden="true">
+  <div>
+    <img class="intro__logo" src="img/LOGO-RETA.png" width="300" height="100" alt="">
+    <div class="intro__barra"><i></i></div>
+  </div>
+</div>
+
+<div class="cursor" aria-hidden="true"><span></span></div>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="topo__logo" href="#conteudo" aria-label="Café Ouro da Terra, início"><img src="img/LOGO-RETA.png" width="300" height="100" alt="Café Ouro da Terra"></a>
+    <nav aria-label="Principal">
+      <a href="#cafes"><span class="rola"><span data-t="Cafés">Cafés</span></span></a>
+      <a href="#origem"><span class="rola"><span data-t="Origem">Origem</span></span></a>
+      <a href="#empresas"><span class="rola"><span data-t="Para empresas">Para empresas</span></span></a>
+      <a href="#contato"><span class="rola"><span data-t="Contato">Contato</span></span></a>
+      <a class="btn btn--ouro js-wa magnetico" data-msg="Olá! Vim pelo site e quero fazer um pedido." href="https://wa.me/553536066120" aria-label="Pedir pelo WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+        <span class="rola"><span data-t="Pedir pelo WhatsApp">Pedir pelo WhatsApp</span></span>
+      </a>
+    </nav>
+  </div>
+  <span class="topo__prog" aria-hidden="true"></span>
+</header>
+
+<main id="conteudo">
+
+  <section class="hero" aria-labelledby="hero-titulo">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow" data-hero>O legítimo café de Varginha, MG</p>
+        <h1 id="hero-titulo" data-split="hero">
+          <span class="cond">Da terra</span>
+          <span class="serifa">pra sua</span>
+          <span class="cond ouro">xícara.</span>
+        </h1>
+        <p class="hero__sub" data-hero>Café 100% arábica do Sul de Minas, torrado e moído com o mesmo padrão em cada pacote. Tradicional pro dia a dia, Gourmet pra quando o café é o momento.</p>
+        <div class="hero__ctas" data-hero>
+          <a class="btn btn--ouro js-wa magnetico" data-msg="Olá! Vim pelo site e quero fazer um pedido." href="https://wa.me/553536066120"><span class="rola"><span data-t="Pedir pelo WhatsApp">Pedir pelo WhatsApp</span></span></a>
+          <a class="btn btn--fantasma magnetico" href="#cafes"><span class="rola"><span data-t="Ver os cafés">Ver os cafés</span></span></a>
+        </div>
+        <div class="hero__prova" data-hero>
+          <div><strong><span data-count="100">100</span>%</strong><span>Arábica</span></div>
+          <div><strong><span data-count="100">100</span> xícaras</strong><span>em cada pacote de 500 g</span></div>
+          <div><strong>Sul de Minas</strong><span>Varginha, MG</span></div>
+        </div>
+      </div>
+      <div class="hero__foto">
+        <div class="hero__moldura">
+          <img src="img/foto-01.png" width="500" height="400" fetchpriority="high" alt="Dois pacotes de Café Ouro da Terra Tradicional numa tábua de madeira, com grãos de café e uma xícara no centro">
+        </div>
+        <svg class="selo" viewBox="0 0 200 200" aria-hidden="true">
+          <circle cx="100" cy="100" r="98" fill="#ffc400"/>
+          <g class="selo__txt">
+            <path id="selo-c" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0" fill="none"/>
+            <text font-size="15.5"><textPath href="#selo-c" textLength="462" lengthAdjust="spacing">100% ARÁBICA · VARGINHA · SUL DE MINAS ·&#160;</textPath></text>
+          </g>
+          <use href="#grao" x="74" y="74" width="52" height="52" color="#16181c"/>
+        </svg>
+        <p class="hero__etiqueta"><small>Café superior</small>Tradicional 500 g</p>
+      </div>
+    </div>
+    <p class="hero__coord" aria-hidden="true">21°33′S · 45°26′W · Varginha</p>
+    <p class="hero__role" aria-hidden="true"><i></i>Role</p>
+  </section>
+
+  <section id="cafes" class="cafes serra" aria-labelledby="cafes-titulo">
+    <div class="wrap">
+      <div class="cafes__cab">
+        <div>
+          <p class="eyebrow" data-reveal><b>01</b>Nossos cafés</p>
+          <h2 id="cafes-titulo" data-split>
+            <span class="cond">Dois momentos.</span>
+            <span class="serifa">um só padrão.</span>
+          </h2>
+        </div>
+        <p data-reveal>O mesmo grão de Varginha em três formatos. Escolha pelo jeito que você toma café, não pelo rótulo.</p>
+      </div>
+
+      <div class="produtos">
+        <article class="produto produto--trad" data-card data-cursor="Pedir">
+          <span class="produto__n">01 / 03</span>
+          <img src="img/003.png" width="350" height="350" loading="lazy" alt="Três pacotes de 500 g do Café Ouro da Terra Tradicional, preto, azul e amarelo">
+          <div class="produto__txt">
+            <p class="produto__tipo">Pro dia a dia</p>
+            <h3 class="cond">Tradicional</h3>
+            <p>O café da garrafa térmica, do pão de queijo e da visita que chega sem avisar. Encorpado, aroma forte, rende a semana toda.</p>
+            <ul class="tags"><li>Torrado e moído</li><li>100% Arábica</li><li>500 g</li></ul>
+            <a class="produto__link js-wa" data-msg="Olá! Quero pedir o Café Ouro da Terra Tradicional 500 g." href="https://wa.me/553536066120">Pedir o Tradicional <span class="produto__seta" aria-hidden="true"><svg><use href="#seta"/></svg><svg><use href="#seta"/></svg></span></a>
+          </div>
+        </article>
+
+        <article class="produto produto--gour" data-card data-cursor="Pedir">
+          <span class="produto__n">02 / 03</span>
+          <figure><img src="img/0005.png" width="350" height="350" loading="lazy" alt="Três pacotes pretos do Café Ouro da Terra Gourmet com rótulo dourado"></figure>
+          <div class="produto__txt">
+            <p class="produto__tipo">Pra tomar devagar</p>
+            <h3 class="cond">Gourmet</h3>
+            <p>Grãos selecionados pra quem passa o café no coador, na prensa ou no V60 e presta atenção no que está na xícara.</p>
+            <ul class="tags"><li>Grãos selecionados</li><li>100% Arábica</li><li>250 g</li></ul>
+            <a class="produto__link js-wa" data-msg="Olá! Quero pedir o Café Ouro da Terra Gourmet." href="https://wa.me/553536066120">Pedir o Gourmet <span class="produto__seta" aria-hidden="true"><svg><use href="#seta"/></svg><svg><use href="#seta"/></svg></span></a>
+          </div>
+        </article>
+
+        <article class="produto produto--caps" data-card data-cursor="Pedir">
+          <span class="produto__n">03 / 03</span>
+          <img src="img/001.png" width="350" height="350" loading="lazy" alt="Caixa de cápsulas Café Ouro da Terra Gourmet, intensidade 7">
+          <div class="produto__txt">
+            <p class="produto__tipo">Sem coar</p>
+            <h3 class="cond">Cápsulas Gourmet</h3>
+            <p>O Gourmet em cápsula, intensidade 7. O mesmo padrão, na velocidade da máquina.</p>
+          </div>
+          <div class="produto__txt">
+            <ul class="tags"><li>Intensidade 7</li><li>Torrado e moído</li></ul>
+            <a class="produto__link js-wa" data-msg="Olá! Quero pedir as Cápsulas Gourmet Ouro da Terra." href="https://wa.me/553536066120">Pedir as cápsulas <span class="produto__seta" aria-hidden="true"><svg><use href="#seta"/></svg><svg><use href="#seta"/></svg></span></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="faixa serra">
+    <div class="faixa__janela">
+      <div class="faixa__trilho">
+        <ul aria-label="Características do café">
+          <li>Café superior</li><li class="contorno">Torrado e moído</li><li>100% Arábica</li><li class="contorno">Varginha, MG</li><li>Indústria brasileira</li><li class="contorno">Sul de Minas</li>
+        </ul>
+        <ul aria-hidden="true">
+          <li>Café superior</li><li class="contorno">Torrado e moído</li><li>100% Arábica</li><li class="contorno">Varginha, MG</li><li>Indústria brasileira</li><li class="contorno">Sul de Minas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <section id="origem" class="origem" aria-labelledby="origem-titulo">
+    <div class="wrap">
+      <div class="origem__grid">
+        <div class="origem__txt">
+          <p class="eyebrow" data-reveal><b>02</b>Origem</p>
+          <h2 id="origem-titulo" data-words>Varginha fica no coração do Sul de Minas, a maior região produtora de café do Brasil. <strong>É daqui que sai o Ouro da Terra.</strong></h2>
+          <p data-reveal>Altitude, chuva na medida e inverno seco: o Sul de Minas tem o clima que o arábica pede. O Ouro da Terra é cultivado dentro de normas e parâmetros socioambientais e cada lote é torrado e moído pra chegar na sua casa com o mesmo sabor do anterior.</p>
+        </div>
+        <div class="origem__fotos">
+          <figure data-clip><img src="img/vitrine-tres-foto.png" width="700" height="400" loading="lazy" alt="Lavoura de café em fileiras no Sul de Minas ao pôr do sol" data-parallax></figure>
+          <figure data-clip><img src="img/terceira-vitrin-FOTYO-.png" width="700" height="400" loading="lazy" alt="Mãos segurando grãos de café maduros, vermelhos, sobre um cesto de colheita" data-parallax></figure>
+          <div class="origem__legenda" data-reveal>
+            <strong>Do pé<br><span>ao pacote.</span></strong>
+            <p>Colheita, torra e moagem no Sul de Minas.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="passos-wrap" style="position:relative">
+        <ol class="passos">
+          <li data-reveal><b>01</b><h3>Colhido no Sul de Minas</h3><p>Café arábica das lavouras da região de Varginha.</p></li>
+          <li data-reveal><b>02</b><h3>Torrado com padrão</h3><p>Torra e moagem controladas pra que todo pacote tenha o mesmo gosto.</p></li>
+          <li data-reveal><b>03</b><h3>Direto pra sua xícara</h3><p>Em casa, na empresa ou na prateleira do mercado.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="conta serra" aria-labelledby="conta-titulo">
+    <div class="wrap conta__grid">
+      <div>
+        <p class="eyebrow" data-reveal><b>03</b>A conta do café</p>
+        <h2 id="conta-titulo" data-split>
+          <span class="cond">1 pacote.</span>
+          <span class="cond">4 semanas.</span>
+          <span class="cond azul">100 xícaras.</span>
+        </h2>
+        <p class="conta__intro" data-reveal>Um pacote de 500 g rende em média 100 xícaras. Diga quantas xícaras saem por dia na sua casa ou na sua empresa e a gente faz a conta do mês.</p>
+      </div>
+      <form class="calc" data-reveal onsubmit="return false">
+        <label for="xicaras">Xícaras por dia <output for="xicaras" id="xicaras-out">10</output></label>
+        <input type="range" id="xicaras" min="1" max="200" value="10" step="1">
+        <div class="calc__escala" aria-hidden="true"><span>1</span><span>casa</span><span>escritório</span><span>200</span></div>
+        <div class="calc__res" aria-live="polite">
+          <span class="calc__num" id="pacotes">3</span>
+          <span class="calc__un"><strong id="pacotes-txt">pacotes de 500 g</strong>por mês, em 30 dias</span>
+        </div>
+        <div class="pacotes" id="pacotes-grid" aria-hidden="true"></div>
+        <a class="btn btn--ouro magnetico" id="calc-wa" href="https://wa.me/553536066120"><span class="rola"><span data-t="Pedir pelo WhatsApp">Pedir pelo WhatsApp</span></span></a>
+        <p class="calc__nota">Estimativa com base em 100 xícaras por pacote de 500 g.</p>
+      </form>
+    </div>
+  </section>
+
+  <section id="empresas" class="empresas" aria-labelledby="empresas-titulo">
+    <div class="wrap empresas__grid">
+      <div class="empresas__foto">
+        <span class="empresas__bloco" aria-hidden="true"></span>
+        <figure data-clip><img src="img/foto-03.png" width="500" height="400" loading="lazy" alt="Três pacotes de Café Ouro da Terra sobre saco de juta, com xícara de café e grãos espalhados" data-parallax></figure>
+      </div>
+      <div class="empresas__txt">
+        <p class="eyebrow" data-reveal><b>04</b>Para empresas</p>
+        <h2 id="empresas-titulo" data-split>
+          <span class="cond">Café bom no escritório,</span>
+          <span class="serifa">no balcão e na prateleira.</span>
+        </h2>
+        <p data-reveal>Pra quem quer servir ou revender um café de Varginha. Condições especiais pra compra recorrente e em volume, com entrega combinada direto com a gente.</p>
+        <ul class="segmentos" data-reveal>
+          <li><a class="js-wa" data-msg="Olá! Quero o Café Ouro da Terra para o meu escritório." href="https://wa.me/553536066120">Escritórios e coworkings <span>copa e reunião</span><svg aria-hidden="true"><use href="#seta"/></svg></a></li>
+          <li><a class="js-wa" data-msg="Olá! Tenho restaurante, padaria ou hotel e quero conhecer as condições do Café Ouro da Terra." href="https://wa.me/553536066120">Restaurantes, padarias e hotéis <span>serviço</span><svg aria-hidden="true"><use href="#seta"/></svg></a></li>
+          <li><a class="js-wa" data-msg="Olá! Quero revender o Café Ouro da Terra na minha loja." href="https://wa.me/553536066120">Mercados e empórios <span>revenda</span><svg aria-hidden="true"><use href="#seta"/></svg></a></li>
+        </ul>
+        <a class="btn btn--preto js-wa magnetico" data-reveal data-msg="Olá! Tenho uma empresa e quero conhecer as condições do Café Ouro da Terra." href="https://wa.me/553536066120"><span class="rola"><span data-t="Pedir condições pra empresa">Pedir condições pra empresa</span></span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contato" class="rodape serra">
+  <div class="wrap">
+    <div class="rodape__cta">
+      <h2 data-split>
+        <span class="cond">Passa um café</span>
+        <span class="serifa">com a gente.</span>
+      </h2>
+      <a class="btn btn--ouro js-wa magnetico" data-reveal data-msg="Olá! Vim pelo site do Café Ouro da Terra." href="https://wa.me/553536066120"><span class="rola"><span data-t="Chamar no WhatsApp">Chamar no WhatsApp</span></span></a>
+    </div>
+    <div class="rodape__cols">
+      <div data-reveal>
+        <img src="img/LOGO-RETA.png" width="300" height="100" loading="lazy" alt="Café Ouro da Terra">
+        <p>O legítimo café de Varginha, Sul de Minas Gerais.</p>
+      </div>
+      <div data-reveal>
+        <h3>Fale com a gente</h3>
+        <p><a href="https://wa.me/553536066120">WhatsApp (35) 3606-6120</a><br>
+        <a href="tel:+553532142064">Telefone (35) 3214-2064</a><br>
+        <a href="mailto:contato@cafeourodaterra.com.br">contato@cafeourodaterra.com.br</a></p>
+      </div>
+      <div data-reveal>
+        <h3>Onde estamos</h3>
+        <address>Av. Francisco Gonçalves Valim, 460<br>Rezende, Varginha, MG<br>CEP 37062-185</address>
+      </div>
+      <div data-reveal>
+        <h3>Atendimento</h3>
+        <p>Segunda a sexta, 8h às 17h<br><a href="https://www.instagram.com/cafeourodaterra/">Instagram @cafeourodaterra</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="gigante" aria-hidden="true">
+    <span class="gigante__contorno">Ouro da Terra</span>
+    <span class="gigante__cheio">Ouro da Terra</span>
+  </div>
+  <div class="rodape__base">
+    <div class="wrap">
+      <span>© <span id="ano">2026</span> Café Ouro da Terra. Todos os direitos reservados.</span>
+      <span>Varginha, Minas Gerais</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const html = document.documentElement;
+  const WA = 'https://wa.me/553536066120?text=';
+  const setRola = (a, txt) => { const s = a.querySelector('.rola > span'); s.textContent = txt; s.dataset.t = txt; };
+
+  /* Links de WhatsApp com mensagem pronta */
+  document.querySelectorAll('.js-wa').forEach(a => { a.href = WA + encodeURIComponent(a.dataset.msg); });
+  document.querySelectorAll('a[href^="https://"]').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
+
+  /* Header: sólido fora do topo, some rolando pra baixo, volta rolando pra cima */
+  const topo = document.querySelector('.topo');
+  let ultimo = 0;
+  addEventListener('scroll', () => {
+    const y = scrollY;
+    topo.classList.toggle('solido', y > 40);
+    topo.classList.toggle('esconde', y > ultimo && y > innerHeight * .9);
+    ultimo = y;
+  }, { passive: true });
+
+  /* Menu marca a seção em leitura */
+  const navLinks = [...document.querySelectorAll('.topo nav > a[href^="#"]')];
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) navLinks.forEach(a => a.classList.toggle('ativo', a.getAttribute('href') === '#' + e.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  ['cafes', 'origem', 'empresas', 'contato'].forEach(id => io.observe(document.getElementById(id)));
+
+  /* Conta do café: 100 xícaras por pacote, 30 dias */
+  const range = document.getElementById('xicaras');
+  const outX = document.getElementById('xicaras-out');
+  const outP = document.getElementById('pacotes');
+  const outT = document.getElementById('pacotes-txt');
+  const calcWa = document.getElementById('calc-wa');
+  const grid = document.getElementById('pacotes-grid');
+  const MAX = Math.ceil(+range.max * 30 / 100);
+  grid.innerHTML = Array.from({ length: MAX }, () => '<svg viewBox="0 0 20 28"><use href="#pac"/></svg>').join('');
+  const packs = [...grid.children];
+  let atual = 0;
+  const numero = { v: 3 };
+  function conta() {
+    const x = +range.value;
+    const p = Math.ceil(x * 30 / 100);
+    range.style.setProperty('--p', ((x - range.min) / (range.max - range.min) * 100) + '%');
+    outX.value = x;
+    outT.textContent = p === 1 ? 'pacote de 500 g' : 'pacotes de 500 g';
+    setRola(calcWa, `Pedir ${p} ${p === 1 ? 'pacote' : 'pacotes'} pelo WhatsApp`);
+    calcWa.href = WA + encodeURIComponent(`Olá! Fiz a conta no site: ${x} xícaras por dia, uns ${p} pacotes de 500 g por mês. Quero fazer um pedido.`);
+    packs.forEach((el, i) => {
+      el.style.transitionDelay = (i < p ? Math.max(0, i - atual) : Math.max(0, atual - 1 - i)) * 12 + 'ms';
+      el.classList.toggle('on', i < p);
+    });
+    if (window.gsap && html.classList.contains('anim')) {
+      gsap.to(numero, { v: p, duration: .5, ease: 'power3.out', overwrite: true, onUpdate: () => outP.textContent = Math.round(numero.v) });
+    } else outP.textContent = p;
+    atual = p;
+  }
+  range.addEventListener('input', conta);
+  conta();
+  document.getElementById('ano').textContent = new Date().getFullYear();
+
+  /* ---------- Motion ---------- */
+  addEventListener('load', () => {
+    if (!html.classList.contains('anim') || !window.gsap || !window.SplitText || !window.ScrollTrigger) return;
+    document.fonts.ready.then(motion);
+  });
+
+  function motion() {
+    clearTimeout(window.__fs);
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+    const desktop = matchMedia('(pointer: fine) and (min-width: 1024px)').matches;
+
+    /* Rolagem com inércia, só com mouse */
+    if (desktop && window.Lenis) {
+      const lenis = new Lenis({ duration: 1.15, smoothWheel: true });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(t => lenis.raf(t * 1000));
+      gsap.ticker.lagSmoothing(0);
+      document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+        const alvo = document.querySelector(a.getAttribute('href'));
+        if (alvo) { e.preventDefault(); lenis.scrollTo(alvo, { offset: a.getAttribute('href') === '#conteudo' ? 0 : -30, duration: 1.5 }); }
+      }));
+    }
+
+    /* Títulos: linhas com máscara, sobem juntas quando entram na tela */
+    let heroSplit;
+    document.querySelectorAll('[data-split]').forEach(el => {
+      const hero = el.dataset.split === 'hero';
+      const s = new SplitText(el, { type: hero ? 'lines,chars' : 'lines', mask: 'lines', linesClass: 'split-linha' });
+      gsap.set(el, { visibility: 'visible' });
+      if (hero) { heroSplit = s; return; }
+      gsap.fromTo(s.lines, { yPercent: 115, y: 0 }, {
+        yPercent: 0, y: 0, duration: 1.15, ease: 'expo.out', stagger: .09,
+        scrollTrigger: { trigger: el, start: 'top 86%', once: true }
+      });
+    });
+
+    /* Hero: tudo numa timeline só, pra entrar sincronizado */
+    gsap.set(heroSplit.chars, { yPercent: 115, y: 0 });
+    const hero = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } })
+      .to(heroSplit.chars, { yPercent: 0, y: 0, duration: 1.2, stagger: .028 })
+      .fromTo('.hero__moldura', { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'expo.inOut' }, .05)
+      .fromTo('.hero__moldura img', { scale: 1.4 }, { scale: 1, duration: 1.8 }, .05)
+      .fromTo('[data-hero]', { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 1, stagger: .09 }, .3)
+      .fromTo('.selo', { opacity: 0, scale: 0, rotation: -120 }, { opacity: 1, scale: 1, rotation: 0, duration: 1.2, ease: 'back.out(1.5)' }, .9)
+      .fromTo('.hero__etiqueta', { opacity: 0, y: 30, rotation: 8 }, { opacity: 1, y: 0, rotation: -3, duration: .9, ease: 'back.out(2.2)' }, 1.05)
+      .fromTo('.hero__coord, .hero__role', { opacity: 0 }, { opacity: 1, duration: 1 }, 1.1)
+      .add(() => document.querySelectorAll('[data-count]').forEach(el => {
+        const o = { v: 0 };
+        gsap.to(o, { v: +el.dataset.count, duration: 1.6, ease: 'power3.out', onUpdate: () => el.textContent = Math.round(o.v) });
+      }), .5);
+
+    const intro = document.querySelector('.intro');
+    if (html.classList.contains('intro-on')) {
+      try { sessionStorage.setItem('odt-intro', '1'); } catch (e) {}
+      gsap.timeline({ onComplete: () => { intro.remove(); html.classList.remove('intro-on'); } })
+        .fromTo('.intro__logo', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .8, ease: 'expo.out' })
+        .to('.intro__barra i', { scaleX: 1, duration: .9, ease: 'power2.inOut' }, .15)
+        .to('.intro > div', { opacity: 0, y: -24, duration: .45, ease: 'power2.in' })
+        .to(intro, { yPercent: -102, duration: 1, ease: 'expo.inOut' }, '-=.1')
+        .add(() => hero.play(), '-=.6');
+    } else hero.play();
+
+    /* Selo gira sempre; faixa corre sempre. Os dois aceleram e trocam de sentido com a rolagem */
+    const selo = gsap.to('.selo__txt', { rotation: 360, svgOrigin: '100 100', duration: 22, ease: 'none', repeat: -1 });
+    const faixa = gsap.to('.faixa__trilho', { xPercent: -50, duration: 32, ease: 'none', repeat: -1 });
+    selo.totalTime(selo.duration() * 200);
+    faixa.totalTime(faixa.duration() * 200);
+    ScrollTrigger.create({
+      onUpdate(self) {
+        const dir = self.direction;
+        const v = Math.min(Math.abs(self.getVelocity()) / 350, 5);
+        [faixa, selo].forEach(t => {
+          gsap.killTweensOf(t);
+          gsap.timeline()
+            .to(t, { timeScale: dir * (1 + v), duration: .2 })
+            .to(t, { timeScale: dir, duration: 1.2, ease: 'power2.out' });
+        });
+      }
+    });
+
+    /* Parallax do hero ao sair da tela */
+    gsap.to('.hero__foto', { yPercent: -14, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    gsap.to('.hero h1', { yPercent: 14, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+    /* Reveal padrão em lote */
+    ScrollTrigger.batch('[data-reveal]', {
+      start: 'top 90%', once: true,
+      onEnter: lote => gsap.fromTo(lote, { opacity: 0, y: 36 }, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', stagger: .1 })
+    });
+
+    /* Cards de produto entram em cascata */
+    gsap.fromTo('[data-card]', { opacity: 0, y: 90, rotation: 1.5 }, {
+      opacity: 1, y: 0, rotation: 0, duration: 1.3, ease: 'expo.out', stagger: .12, clearProps: 'transform',
+      scrollTrigger: { trigger: '.produtos', start: 'top 85%', once: true }
+    });
+
+    /* Origem: leitura palavra por palavra, grifo amarelo no fim */
+    const origemH = document.querySelector('[data-words]');
+    const palavras = new SplitText(origemH, { type: 'words' });
+    const grifo = origemH.querySelector('strong');
+    gsap.set(grifo, { '--hl': 0 });
+    gsap.timeline({ scrollTrigger: { trigger: origemH, start: 'top 80%', end: 'bottom 45%', scrub: .6 } })
+      .fromTo(palavras.words, { opacity: .14 }, { opacity: 1, stagger: .1, ease: 'none' })
+      .to(grifo, { '--hl': 1, duration: 1.2, ease: 'none' }, '-=.8');
+
+    /* Fotos abrem de baixo pra cima e têm parallax interno */
+    document.querySelectorAll('[data-clip]').forEach(f => {
+      gsap.fromTo(f, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.4, ease: 'expo.inOut', scrollTrigger: { trigger: f, start: 'top 88%', once: true } });
+    });
+    document.querySelectorAll('[data-parallax]').forEach(img => {
+      gsap.set(img, { scale: 1.18 });
+      gsap.fromTo(img, { yPercent: -7 }, { yPercent: 7, ease: 'none', scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
+    });
+    gsap.fromTo('.empresas__bloco', { yPercent: 14 }, { yPercent: -6, ease: 'none', scrollTrigger: { trigger: '.empresas', start: 'top bottom', end: 'bottom top', scrub: true } });
+
+    /* Linha do processo se desenha */
+    const passos = document.querySelector('.passos');
+    const linha = document.createElement('span');
+    linha.className = 'passos__linha';
+    linha.setAttribute('aria-hidden', 'true');
+    passos.prepend(linha);
+    gsap.fromTo(linha, { scaleX: 0 }, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: passos, start: 'top 92%', end: 'top 55%', scrub: .5 } });
+
+    /* Assinatura gigante do rodapé enche de ouro */
+    gsap.fromTo('.gigante__cheio', { clipPath: 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: { trigger: '.gigante', start: 'top bottom', end: 'bottom bottom', scrub: .6 } });
+
+    /* Só desktop com mouse: tilt da foto, botões magnéticos e cursor contextual */
+    if (desktop) {
+      const foto = document.querySelector('.hero__foto');
+      gsap.set(foto, { transformPerspective: 1000 });
+      const rx = gsap.quickTo(foto, 'rotationX', { duration: .8, ease: 'power3' });
+      const ry = gsap.quickTo(foto, 'rotationY', { duration: .8, ease: 'power3' });
+      document.querySelector('.hero').addEventListener('pointermove', e => {
+        ry((e.clientX / innerWidth - .5) * 10);
+        rx((e.clientY / innerHeight - .5) * -8);
+      });
+
+      document.querySelectorAll('.magnetico').forEach(b => {
+        const mx = gsap.quickTo(b, 'x', { duration: .5, ease: 'power3' });
+        const my = gsap.quickTo(b, 'y', { duration: .5, ease: 'power3' });
+        b.addEventListener('pointermove', e => {
+          const r = b.getBoundingClientRect();
+          mx((e.clientX - r.left - r.width / 2) * .28);
+          my((e.clientY - r.top - r.height / 2) * .38);
+        });
+        b.addEventListener('pointerleave', () => { mx(0); my(0); });
+      });
+
+      const cur = document.querySelector('.cursor');
+      const cx = gsap.quickTo(cur, 'x', { duration: .45, ease: 'power3' });
+      const cy = gsap.quickTo(cur, 'y', { duration: .45, ease: 'power3' });
+      addEventListener('pointermove', e => { cx(e.clientX); cy(e.clientY); });
+      document.querySelectorAll('[data-cursor]').forEach(el => {
+        el.addEventListener('pointerenter', () => { cur.firstElementChild.textContent = el.dataset.cursor; gsap.to(cur, { scale: 1, opacity: 1, duration: .5, ease: 'back.out(2)', overwrite: true }); });
+        el.addEventListener('pointerleave', () => gsap.to(cur, { scale: 0, opacity: 0, duration: .3, ease: 'power2.in', overwrite: true }));
+      });
+    }
+
+    ScrollTrigger.refresh();
+  }
+});
+</script>
+</body>
+</html>
