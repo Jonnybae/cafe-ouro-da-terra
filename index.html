@@ -902,7 +902,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const intro = document.querySelector('.intro');
     if (html.classList.contains('intro-on')) {
       try { sessionStorage.setItem('odt-intro', '1'); } catch (e) {}
-      gsap.timeline({ onComplete: () => { intro.remove(); html.classList.remove('intro-on'); } })
+      const introTl = gsap.timeline({ onComplete: () => { intro.remove(); html.classList.remove('intro-on'); } });
+      /* Rede de segurança: a abertura nunca prende a página */
+      setTimeout(() => { if (intro.isConnected) { introTl.progress(1); hero.progress(1); } }, 6000);
+      introTl
         .fromTo('.intro__logo', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .8, ease: 'expo.out' })
         .to('.intro__barra i', { scaleX: 1, duration: .9, ease: 'power2.inOut' }, .15)
         .to('.intro > div', { opacity: 0, y: -24, duration: .45, ease: 'power2.in' })
